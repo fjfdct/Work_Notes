@@ -1,0 +1,8 @@
+171114
+1.Tstation启动界面的URL用于强制退出已经登陆的帐号。
+2.接地pin（GND）一般不在Pinsocket里定义。接入VCC的pin也不定义logic pin，而是单独定义DPS引脚，加上VS前缀。
+3.通过指定SSW来自定义测试流程。
+4.TK=特認（とくにんTokuNinn）, FVShmoo=Frequency-Voltage Shmoo.
+
+171115
+1.左侧Device Pin在PinSocket中对应Logical Pin，右侧PBシルク对应Tester Pin Name。端子名即Spec Pin Name。リレー要在Relay Ctrl中单独定义（Spec填括号内的如CW3），并选好Tester Reource为RL CW*类型。测试功能写在Design Note内。
