@@ -6,3 +6,61 @@
 
 171115
 1.左侧Device Pin在PinSocket中对应Logical Pin，右侧PBシルク对应Tester Pin Name。端子名即Spec Pin Name。リレー要在Relay Ctrl中单独定义（Spec填括号内的如CW3），并选好Tester Reource为RL CW*类型。测试功能写在Design Note内。
+2.Pin Group设定要根据测试项目需要来进行。这部分的定义全部在式样的ソースファイル説明里。
+3.RX系列Channel号用第二栏。
+4.修改SpecPin Name后，记得要在Pin Group中作相应的修改。
+5.于测试机上新建目录时，默认无写入权限，应telnet至相应目录内，用ls -l命令查看权限，然后用chmod -R 777 * 修改权限。
+参数-R : 对目前目录下的所有档案与子目录进行相同的权限变更(即以递回的方式逐个变更) ；
+*：通配符，指当前目录下的所有文件及目录。可以更换为具体文件名。
+r表示读 (Read) 、w表示写 (Write) 、x表示执行 (eXecute)，读、写、运行三项权限可以用数字表示，就是r=4,w=2,x=1，777就是rwxrwxrwx，意思是该登录用户（可以用命令id查看）、他所在的组和其他人都有最高权限。
+
+171116
+1.FVShmoo除测试程序以外，还需要指定spec文件，并在spec中指定axis文件。
+2. ジャンパ = Jumper=JP
+
+171122
+1.测试机执行TSTRA生成程序时，注意选择好相应的参数以避免错误，特别是Integrator Name。
+2.修改后的FreeSheet通过Tstation的Import导入。注意PinSocket选项卡抬头为指定测试机信息的内容。
+4.做FVShmoo时需要cd进入主程序目录后再TSTART2，否则个别项目会出现错误。
+
+171123
+1.FVSHMOO取结果前要打开Function Key #10，否则一fail即中断。（为什么？）
+
+171129
+PinSocket示意图中的两列为测试机头，为Script和POGO。
+
+171130
+1.注意文件权限的问题。每次执行完文件操作后都用ls -lrt查看一下权限，再用chmod修改。
+2.Office Word的宏与EoD冲突，执行宏之前需Susepend EoD。
+
+171201
+1.检视定位测试项目，最快的方式是TestID号。
+2.FVSHMOO采用二分法测定，因此非Debug而是取数据时Disable掉中间过程。
+3.Excel：读取某一目录下所有文件，文件名写入第一列，文件内容写入第二列。
+
+171204
+1.RES=RESet
+2.Leak反复取值不正确的教训：上电之前一定要检查清楚SubBoard跳线和电容电阻连接情况，以及螺丝的松紧度。单引脚Leak问题往往是子板引起的。
+3.将.gz转为.lpa命令：transo2 *.gz。可以指定*，也可以保持不动以转换当前名目录下所有文件。
+
+171205
+1.板子状态：D=Diagnosis，N=Normal，I=Initialization。每周一晚做诊断，周二上午在vpoint/DIAG路径下用ls -lrt并g查阅最新时间，一般在早晨就结束。
+
+171206
+1.VCL为VDD Monitor端子。
+
+171207
+SensorSwitch号，使用大于等于10的号码时，必须有相应的个位数字与之对应，例如用21号则不能删除1号。
+
+171208
+1.VBA编辑器乱码：控制面板=>时钟、语言和区域=>区域=>管理=>非Unicode程序的语言=>更改系统区域设置为中文（简体，中国）=>重启电脑。
+2.测试机的控制PC如果断电，那么测试机也断电。
+3.RX100系列的Timing序列中1/5/10/11必用。
+4.导出的CSV文件不能原封不动再导入，需要用专用工具重新保存一下再导入。另外，导入的csv将不加提示地直接覆盖既有的csv。
+
+171220
+TStation merge程序时，只能拷贝与TestCard有关的Table。其余的如Pattern table和PinSocket table都无法拷贝，需要导出再导入并Diff。
+
+171221
+1.高低温环境影响OpenShort条件，可能导致Fail，所以要在常温下完成Flash写入工作。
+2.高低温机工作头用完后推向后方，以免其他人误操作。
