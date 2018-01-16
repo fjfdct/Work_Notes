@@ -36,7 +36,6 @@ PinSocket示意图中的两列为测试机头，为Script和POGO。
 171201
 1.检视定位测试项目，最快的方式是TestID号。
 2.FVSHMOO采用二分法测定，因此非Debug而是取数据时Disable掉中间过程。
-3.Excel：读取某一目录下所有文件，文件名写入第一列，文件内容写入第二列。
 
 171204
 1.RES=RESet
