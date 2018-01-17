@@ -6,6 +6,7 @@
 
 171115
 1.左侧Device Pin在PinSocket中对应Logical Pin，右侧PBシルク对应Tester Pin Name。端子名即Spec Pin Name。リレー要在Relay Ctrl中单独定义（Spec填括号内的如CW3），并选好Tester Reource为RL CW*类型。测试功能写在Design Note内。
+
 2.Pin Group设定要根据测试项目需要来进行。这部分的定义全部在式样的ソースファイル説明里。
 3.RX系列Channel号用第二栏。
 4.修改SpecPin Name后，记得要在Pin Group中作相应的修改。
