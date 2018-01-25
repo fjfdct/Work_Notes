@@ -69,3 +69,6 @@ TStation merge程序时，只能拷贝与TestCard有关的Table。其余的如Pa
 1.Tstation table的导出和导入：
 带有export功能的表导出为tar文件 - 解压缩（展開） -　用output工具打开并编辑展开后的csv文件，首行一般要改名字，因为Tstation中不允许名称重复 - 在加载项中用CSV Tool保存为csv，然后导入（Pattern table在根界面用Pat Import)
 2.更新使用新的Sequence：在Testcard中选择导入后的Sequence，然后单击Test condition更新条件，最后在Testcard界面下方点击Fill填充。
+
+180125
+1.高低温测试中，不可以低温结束。低温过后需要吹一段时间高温才能取出，不能直接取出，否则导致高电压条件下测试异常。
