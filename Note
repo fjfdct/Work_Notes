@@ -78,9 +78,10 @@ TStation merge程序时，只能拷贝与TestCard有关的Table。其余的如Pa
 
 180226
 1.J750操作：
-上板子并置入芯片，注意1pin在左上而不是左下；
+上板子抽成vaccum并置入芯片，注意1pin在左上而不是左下；
 Shortcut - Open Existing Test Program；
 对照指示书检查Active Job等两项，然后Validate；
 Lot选项卡 - DataCollect Setup - Datalog打勾；
 Datalog选项卡 - 勾上Header every time, 再点开Setup按钮；
-Selected Setups中
+Selected Setups中点开Default - Criteria不动，修改Format为tester name, result and limits；
+
