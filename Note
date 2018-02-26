@@ -84,4 +84,6 @@ Shortcut - Open Existing Test Program；
 Lot选项卡 - DataCollect Setup - Datalog打勾；
 Datalog选项卡 - 勾上Header every time, 再点开Setup按钮；
 Selected Setups中点开Default - Criteria不动，修改Format为tester name, result and limits；
+Run Options - Site仅0 - Enable Words全部选中 - 仅高温需要Do All - Apply - Run.
+2.高低温机Pogo自动升降设定：System - Head always up，若为on,则需要手动升降。
 
