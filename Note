@@ -75,3 +75,12 @@ TStation merge程序时，只能拷贝与TestCard有关的Table。其余的如Pa
 
 180208
 1.管理员把rm -r定义为了rm，也就是说总是需要询问才删除文件。此时可以使用转义字符(Escape Character)，亦即反斜号(Backslash)\rm -rf来恢复原义。
+
+180226
+1.J750操作：
+上板子并置入芯片，注意1pin在左上而不是左下；
+Shortcut - Open Existing Test Program；
+对照指示书检查Active Job等两项，然后Validate；
+Lot选项卡 - DataCollect Setup - Datalog打勾；
+Datalog选项卡 - 勾上Header every time, 再点开Setup按钮；
+Selected Setups中
