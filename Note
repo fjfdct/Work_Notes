@@ -87,3 +87,5 @@ Selected Setups中点开Default - Criteria不动，修改Format为tester name, r
 Run Options - Site仅0 - Enable Words全部选中 - 仅高温需要Do All - Apply - Run.
 2.高低温机Pogo自动升降设定：System - Head always up，若为on,则需要手动升降。
 
+180305
+1.[重要]TOUCH程序生成后，需要用vforce2iforce_v2.pl脚本处理一下，改VF为IF。
