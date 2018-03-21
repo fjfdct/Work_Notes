@@ -89,3 +89,6 @@ Run Options - Site仅0 - Enable Words全部选中 - 仅高温需要Do All - Appl
 
 180305
 1.[重要]TOUCH程序生成后，需要用vforce2iforce_v2.pl脚本处理一下，改VF为IF。
+
+180321
+1.DAXS=Direct Access by eXaminer Serial
