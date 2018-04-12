@@ -1,0 +1,9 @@
+AC = AC test
+Cz = CharacteriZation = ToKunin
+DC = DC test
+Fc = Function test
+Ilk = Current(I) leak
+Skt = Socket = PinSocket
+
+Naming: If necessary, cut its length from the left.
+Product(e.g. RX130_256K)_Table(Skt_, V_, T_, etc.)_Usage(Cz, MP, etc.)_Type(DC/AC/Fc, ADC, etc)_Item(Contact, Leak, VIH, etc)_Method(IFVM, VFIM, etc)_Pin(MD, IIC, etc)_ParameterValue(-100uA, -1.5V, etc)
