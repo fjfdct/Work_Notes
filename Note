@@ -95,3 +95,8 @@ Run Options - Site仅0 - Enable Words全部选中 - 仅高温需要Do All - Appl
 
 180427
 1.DR资料作成时，注意PASS BIN的不一致之处也要写。
+
+180521
+1. Datalogging types:
+- Parametric Test
+- Functional Test
