@@ -1,7 +1,6 @@
 180510	
 	Mod1 J750 Tester Overview
-	"1.Ganging: Two or more of the DPS outputs on a Device Power Board may be ganged together for increased current capacity, which must be adjacent. Only sense lines are connected internally on DPS board. Force lines are connected on the DIB.
-"
+	1.Ganging: Two or more of the DPS outputs on a Device Power Board may be ganged together for increased current capacity, which must be adjacent. Only sense lines are connected internally on DPS board. Force lines are connected on the DIB.
 	2. Data Tool: to create and modify Workbooks(Worksheets), to run and validate Jobs(test programs).
 	3. Production Interface: provide access for operators to relevant features of IG-XL without providing the ability to change existing files
 	4. Pattern file suffix:  .atp - ASCII → .pat - Binary,
