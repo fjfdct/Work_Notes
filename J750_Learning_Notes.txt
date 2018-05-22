@@ -1,0 +1,130 @@
+180510	
+	Mod1 J750 Tester Overview
+	"1.Ganging: Two or more of the DPS outputs on a Device Power Board may be ganged together for increased current capacity, which must be adjacent. Only sense lines are connected internally on DPS board. Force lines are connected on the DIB.
+"
+	2. Data Tool: to create and modify Workbooks(Worksheets), to run and validate Jobs(test programs).
+	3. Production Interface: provide access for operators to relevant features of IG-XL without providing the ability to change existing files
+	4. Pattern file suffix:  .atp - ASCII → .pat - Binary,
+	
+	Mod2 Test Program Overview
+	1. Typical test program model:
+	(1) A description of the DUT to Tester Interface: DUT Description, Tester Resource Assignments
+	(2) Test event programming for each test event: setup tester hardware, setup test, execute test, provide results.
+	(3) Test Event Execution Control (Test Flow): Test event sequence, Result processing (binning).
+	2. A bottom-up development approach: AC / DC Specs, Pin Levels, TimeSets / Edgesets, Instances, Flow Table.
+	3. Case sensitivity: Excel is not case sensitive but consistency is enforced.
+	4. The general format of engineering unit is: =value*unit. e.g. =2*ms --> 2e-3 --> 0.002
+	3. Typical datalog output for parametric tests is one line per pin being tested.
+	The output may be reduced by using the Format = "test name and result [1 pass line/site]". This will output only one line for the first passing pin and omit all other passing pins for a passing parametric test.
+	5. DataCollect Output window:
+	(1) Parametric tests.
+	(2) Functional tests.
+	(3) Results.
+	6. Creating an IG-XL workbook: 
+	Pin Map, Channel Map, Global Specs, DC & AC Specs, Pin Levels, Time Sets / Edge Sets, Test Instances, Flow Table, Pattern Sets / Group, Characterization, Job List
+180514	
+	Mod3 DUT to Tester Interface
+	1. Utility: Utility relay pin
+	2. PinMap should be created first.
+180515	
+	Mod4 DC Tests
+	1. DC levels:
+	(1) Values provided by the test program are used as the digital input to level DAC’s for the PE’s and DPS’s.
+	(2) A DC Specs worksheet, and the Global Specs worksheet may also be used in support of the Pin Levels worksheet.
+	(3) The data set is generated and loaded into LVM at Program Validation.
+	2. Global specs:
+	(1) Unicity as a Worksheet within a Workbook.
+	(2) Default symbols(*_default) are default values for corresponding parameters.
+	(3) Effective range can be limited to a specific job or jobs by inputting names in the "Job" column.
+	3. Sequence:
+	(1) The "Seq." column can be used to establish a power-up / power-down sequence.
+	(2) Only pins / pingroups of type Power,Input or I/O are affected. Output pins are not involved in sequencing.
+	(3) The value may a literal integer value or an equation that produces an integer value.
+	(4) Pins with the lower values will have higher priority in the power-up sequence.
+	4. Specs: Selector -> Category -> Symbol, intended to mirror a DUT Datasheet.
+	(1) Symbol names must be preceded by underscore  ( _ ) when used outside the Spec worksheet.
+	(2) Symbol names can be used by Pin Levels worksheet to create a DC data set, or Test Instance to set test conditions, program BPMU / PPMU, etc.
+	(3) Values using unit designators must be entered as an equation using the multiply operation (*).
+180516	5. Common/Typical template structure: Prebody - Body - Postbody
+	(1) Prebody: set-up activities to prepare, including:
+	- Obtaining levels and timing information for any patterns to be run,
+	- Computing the number of samples to be made,
+	- Setting initial states on pins.
+	(2) Body: perform, including:
+	- Running any patterns for preconditioning or dynamic conditioning,
+	- Connecting and disconnecting specified pins,
+	- Performing the functional test or parametric measurement,
+	- Running any user-written interpose functions at the appropriate points.
+	(3) Postbody: clean-up, including:
+	- Restoring pin electronics to their entry state,
+	- Returning channels to their default start-state conditions.
+	6. Patterns:
+	(1) PrecondPat: for DUT preconditioning before measurements are made
+	(2) HoldStatePat: to put the DUT into a known state and keep it there. Pattern loops while measurement is being made.
+180517	7. The arguments of the Opcode are from the Parameter field. e.g. Test - Instance name.
+	8. The flow controller maintains a set of state variables for result processing(Binning) :
+	(1) Result: of the flow table which is not automatically set.
+	(2) Bin number: hard bin for handler/prober.
+	(3) Sort number: soft bin.
+	9. Tnum: allows the setting of Test Number counter to a specific number at the beginning of an instance.
+	10. A row with a blank opcode field is treated the same as a row with a stop opcode.
+180521	
+	Mod5 DC Test Debug
+	1. Each click of Continue will move from code block to code block in the template, i.e. PreBody to Body.
+	2. Changes made in Debug Display Manager are not applied to the database.
+	
+	Mod6 Functional Test
+	1. Digital Subsystem:
+	(1) Pattern Generators
+	(2) Digital Channels: drives input levels for DUT input pins and receives output levels from DUT output pins.
+	- Pin Electronics (PE)
+	- Waveform Formatter: six Edge Generators, Edgeset Memory, Timeset Memory.
+	- Fail Processing: compares the signals from the comparators to expect data from the vector data, then send a Pass/Fail signal to the PatGen for pattern control.
+	- HRAM: stores vector results from Fail Processor. Captures data about pattern cycles while the pattern is executing for a maximum of 256 cycles.
+	- Vector Memory
+	2. Waveform Formatter: consists of (per channel)
+	(1) Six Edge Generators: generate signals to control drive and compare circuits of the Pin Electronics. D0~D3, R0, R1.
+	(2) Edgeset Memory: stores 32 edgesets(0 to 31). 
+	One edgeset = timing and format for the six edge generators.
+	(3) Timeset Memory: Stores 256 timesets.
+	One timeset (TSet) = an edgeset memory address(global, used to select one of 32 possible edgesets) per test channel + the cycle period value(used by PatGen to establish length of time for a vector cycle)
+	3. Waveform data:
+	(1) Vector data gives:
+	- DD(Drive Data) directions.
+	- Cycle type: 1,0 = drive mode, H,L = receive mode.
+	(2) Data source selection: Pattern Data (PAT), Pattern Data Complement (PATNOT), Logic High/Low (PATHI/LO), Logic High/Low ignore cycle mode(ALLHI/LO)
+	(3) Compare mode:
+	- Window: Verify the state of the logic signal during the time period specified by the Compare Open (R0) and Compare Close (R1) values. R0 < R1.
+	- Edge: Perform an instantaneous value test at the time specified by  Compare Open (R0).
+	- Off:
+	(4) User-selectable timing modes: 
+	- Normal: 100MHz(min 10ns), 5 edges per cycle(drive D0, D1, D2, compare D3(drive off), R0(compare open)). Only edge compares are allowed.
+	- Extended: 50MHz(min 20ns), 6 edges per cycle(drive D0,D1,D2,D3,compare R0, R1)
+	4. Hazards: timing conditions that violate the tester hardware specifications.
+	5. Group testing: member index and maximum index.
+	
+	Mod7 Patterns
+	1. Microcodes: may consist of an opcode and/or control bits used by PatGen.
+	(1) Opcode: to determine what to do next.
+	(2) Control bits: to enable or disable certain PatGen functions.
+	2. Once the PatGen starts accessing vectors from Vector Memory, the process will continue until a "halt" opcode is detected, or a vector failure is reported from the Fail Processing circuit.
+	(…)
+180522	
+	Mod8 Characterization
+	1. Shmoo Test method: for each new point
+	(1) Retest: rerun complete test.
+	(2) Reburst: rerun current pattern.
+	2. Shmoo Algorithm:
+	(1) Linear: Vary Parameter "Search From" value to the "Search To" value in "Step Size" increments.
+	(2) List: Use the values entered in comma-separated order in the Point List field. Points must be in ascending order.
+	3. Parameters: Only a Shmoo Setup allows multiple parameters to be varied along an axis.
+	(1) Primary Parameters: The first parameter defined for an axis.
+	(2) Tracking Parameters: All other parameters for that axis. Each Tracking parameter will always use a Linear Algorithm and have its own range, but will change in ‘lock step’ with the Primary parameter.
+	4. Margin: 1-Dimension shmoo.
+	5. Adjust: actually updates the tester with a new value, based on the result and “backoff” combination.
+	The value may be stored into a designated spec for subsequent use by the test program. This is typical. A "backoff" value may be applied to the value before it is stored into the spec. The tester state is restored to the original values for the context.
+	6. Measure: resets the tester to original value.
+	The value is found and returned. It may be reported but not used by the test program. The adjusted values are always restored back to the original programmed state after a Measure.
+	7. Search meehods: While this method is considered the slowest method, it is useful when multiple transition points are suspected for a given range of values.
+	(1) Pure Binary: Pos and Neg. Statistically, this is the fastest method for finding a value.
+	(2) Modified Binary: Auto, Pos, and Neg. This method may compensate for a "drifting" parameter.
