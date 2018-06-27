@@ -1,0 +1,211 @@
+﻿I. General:
+
+ADAS = Advanced Driver-Assistance Systems
+ASSP = Application-Specific Standard Parts
+ASSY = ASSemblY = 組み立て = Packaging = Encapsulation = Sealing
+b/c = because
+BGR = Band Gap voltage Reference
+CLI = CLear Interrupts
+FT = Final Test = 選別
+N/A = Not Applicable
+N/C = No Connect
+POPF = POP Flags
+SCI = Serial Communication Interface
+STDF = Standard Test Data Format
+STI = SeT Interrupts
+Tox = gate oxide Thickness
+WT = Wafer Test
+w/ = with
+w/o = without
+
+
+Process corners:
+One naming convention for process corners is to use two-letter designators, where the first letter refers to the N-channel MOSFET (NMOS) corner, and the second letter refers to the P channel (PMOS) corner. 
+In this naming convention, three corners exist: typical, fast and slow. Fast and slow corners exhibit carrier mobilities that are higher and lower than normal, respectively. 
+For example, a corner designated as FS denotes fast NFETs and slow PFETs.
+...
+RX130_256K_FVSHMOO_HH01_25C_180503
+RX130_512K_VOL_High_TT01_25C_180503
+...
+Renesas sometimes subscribes F for H, S for L. 
+
+II. Renesas universal:
+
+1. Organizations:
+旧EL = Electric Limited, NEC(Nippon Electric Company)
+OS = OutSourcing
+RENESAS = Renaissance Semiconductor for Advanced Solutions = ルネサス
+RSB = Renesas Semiconductor(Beijing) (MP)
+RSC = Renesas Semiconductor(Suzhou)
+RSKL = Renesas Semiconductor(Malaysia) Kuala Lumpur(MP for QFP, SSOP, LGA, BGA)
+	WP & WT: Kumamoto　Kawajiri　Factory(MF3 Line) 
+	Assembly & FT： 
+	Ooita Factory(Trial for QFP)
+	Yamaguchi Factory(Trial for LGA, BGA)
+	Kumamoto Nishiki Factory(Trail for SSOP)
+RSKY = Renesas Semiconductor Kyuushuu Yamaguchi
+RSM = Renesas Semiconductor Malaysia
+RSS = Renesas Semiconductor Singapore(MP for QFN)
+旧RT = 旧Renesas Technology
+
+2. Trial Manufacture（試作）:
+IMD = 
+KeyA = 旧ELの型名体系
+Marking = 捺印
+P/W = Pellet by Wafer = WT
+PO = Purchasing Order = 注文書＆注文番号
+REOS = 
+
+WBS = 指し図 = Mandate
+WDS = Wiring Diagram System = INCASE = Wire Bonding
+WP = Wafer Processing = 拡散 = Doping
+
+3. Microcontroller:
+CAC = Clock frequency Accuracy measurement Circuit
+CTSU = Capacitive Touch Sensing Unit
+DAXS = Direct Access by eXtreme Serial bus
+ED = Electronic Description
+HLFG = High Low Frequency Generator
+ICU = Interrupt Controller Unit
+LVD = Low Voltage Detection
+MPU = Memory Protection Unit(Bus Master/Slave)
+PMP = Port Mode Register
+PCR = Port Control Register
+PRCR = PRoteCt Register
+OCO = On-Chip Oscillator (HOCO - High speed, LOCO - Low speed)
+OS = OpenShort
+QBUS = Quarter-Bus
+QSPI = Quad Serial Peripheral Interface
+RTC = Real Time Clock
+TDR = Transit Data Register
+TSCAP = Connect to the VSS via a decoupling capacitor (10 nF) for stabilizing the internal voltage
+TSN = Touch Sensor
+VEC = VECtor number
+VCL端子はLSIの内部動作電圧の安定化用端子です。VCL端子には、内部電圧安定用のコンデンサを接続する必要があります。
+VGS = Voltage Ground Source short check
+REGC(REGulator)
+
+1. Pin:
+*MON = *MONitor e.g. VCCMON, VSSMON
+
+2. Test Program Naming: 
+If necessary, cut its length from the LEFT.
+Product(e.g. RX130_256K)_Table(Skt_, V_, T_, etc.)_Usage(Cz, MP, etc.)_Type(DC/AC/Fc, ADC, etc)_Item(Contact, Leak, VIH, etc)_Method(IFVM, VFIM, etc)_Pin(MD, IIC, etc)_ParameterValue(-100uA, -1.5V, etc)
+
+AC = AC test
+Cz = Characterization = ToKunin
+DC = DC test
+Func = Fc = Functional test
+Ilk = Current(I) leak
+Skt = Socket = PinSocket
+
+Tstation:
+
+****_R : R=Reject の意、Rejectテスト(NGカテゴリを設定し、Failの場合Reject(DUTカット)する)
+****_O : O=withOut の意、withOutテスト(ファンクションパターンの実行のみ)
+****_C : C=Catch の意、Catchテスト(CarchRAMにErrorデータを格納するのみ(主にメモリ対応))
+****_D : D=Detect の意、Detectテスト(測定のためのテストを実施するが、Rejectしない。変数に結果データを格納するだけ。)
+****_S : S=Select の意、Selectテスト(選別テストのみ)に分類されます。
+
+IF = InterFace
+
+III. J750 Tester:
+
+APMU = Analog Parametric Measurement Unit
+BPMU = Board Parametric Measurment Unit
+ctn = CTO chans n
+CTO = Converter Test Option(for ADC and DAC)
+CUB = Clock Utility Board
+DSIO = Digital Source IO
+DIB = Device Interface Board
+EG = EdGe
+Hdw = Hardware
+HRAM = History RAM
+LMF = Low to Mid Frequency
+LVM = Large Vector Memory
+MTO = Memory Test Option
+PatGen = Pattern Generator
+PE = Pin Electronics
+PPMU = PinPMU = Pin Parametric Measurement Unit
+PPPMU = Per Pin Parametric Measurement Unit
+PRCR = PRoteCt Register
+BPMU = Board Parametric Measurement Unit
+rl = relay
+RFIO = Radio Frequency IO
+Tdelay = Time delay after application of supply voltage
+TSB = Time Set Basic
+Stw = Software
+SVM = Subroutine Vector Memory
+Tpr = rise/fall time of the Vph
+VBT = Visual Basic for Test (VBT Model)
+Vph = programming Voltage high for high voltage pins
+Vps = Voltage power supply
+Isc = Current short circuit
+
+1. J750 output data naming:
+
+g - 48pin
+m - 64pin
+n - 801pin
+r - 100pin
+
+*fs101 - FT1BIless
+*f0101 - FT1Short
+*f0201 - FT2
+*a0101 - QAT
+*f2201 - ReBI
+
+2. J750 test program output window:
+Sit = Site
+Rsl = Result
+Bin = Binning
+Srt = Sort
+Lgc = Logic state(true/false)
+
+3. J750 edgeset memory: D0~D3, R0, R1
+Don = Drive on
+Doff = Drive off
+DC = Drive Complement
+DD = Drive Data
+DH = Drive High
+DL = Drive Low
+Con = Compare on
+Coff = Compare off
+
+4. J750 drive formats:
+RH = Return to High
+RL = Return to Low
+NR = Non-Return
+ROFF = Return to Off
+SBH = Surround By High
+SBL = Surround By Low
+SBC = Surround By Complement
+STAY = do not change
+
+5. Specification:
+DPS*S = DPS Sense(Measure)
+DPS*F = DPS Force
+
+IV. RL78 Family ｔype naming（型名体系）
+
+e.g. "RL78/G13A"
+
+1. Identifier 1: alphabetic
+/D* = Dashboard
+/E* = EV/HEV/Engine, (Hybrid) Electric Vehicle
+/F* = body
+/G* = General purpose w/o display function
+/L* = General purpose w/ display function like LCD, e.g. RL78/L1C Connectivity(USB) w/ LCD
+/H* = ASSP for Home-use equipment
+/I* = ASSP for Industrial & Infrastructure
+/P* = Chassis
+/R* = security(aiRbag, ADAS)
+/S* = Sound, acoustic utilities
+
+2. Generation: serial numeric
+"1" for the 1st generation
+
+3. Identifier 2: serial alphabetic or numeric. 
+
+4. Derivation: serial alphabetic. No assignment to the 1st type(base) product.
+"A", "B", etc.
